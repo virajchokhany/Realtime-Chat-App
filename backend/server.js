@@ -69,25 +69,30 @@ const validateJWT = require('./middleware/jwtMiddleware');
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 connectDB();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 
 
-app.use(validateJWT);
 app.use(express.json());
 
-app.get("/",(req,res) =>{
-  console.log(req.io);
-    res.send("Hello");
-})
+
+
+
 app.use('/api/user',userRoutes);
 app.use('/api/chat',chatRoutes);
 app.use("/api/message", messageRoutes);
+
+const path = require('path');
+console.log(__dirname);
+app.use(express.static(path.join(__dirname, '../frontend/dist/frontend')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/frontend/index.html'));
+});
+  
+app.use(validateJWT);
 app.use(notFound);
 app.use(errorHandler);
 
-
-  
 // Socket.IO logic
 io.on('connection', (socket) => {
     socket.join(socket.user._id.toString());

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   
-  api : 'http://localhost:5000/'
+  api : 'https://realtime-chat-app-8f5k.onrender.com'
 };

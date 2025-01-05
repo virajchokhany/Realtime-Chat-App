@@ -42,7 +42,7 @@ export class SocketService {
     let secret = accessTokenParsed.secret;
     console.log(secret,"Access Token");
     // Create the socket connection
-    this.socket = io('http://localhost:5000', {
+    this.socket = io('wss://realtime-chat-app-8f5k.onrender.com', {
       auth: {
         token: secret, // Ensure secret is a string
       },
