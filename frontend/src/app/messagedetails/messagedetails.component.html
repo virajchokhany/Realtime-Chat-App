@@ -1,0 +1,68 @@
+<div *ngIf="selectedChat" class="chat-window">
+  <mat-card appearance="outlined" class="chat-card">
+    <mat-card-header>
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <mat-card-title style="text-align: left;">{{ getChatName() }}</mat-card-title>
+        <mat-card-title style="text-align: right;">
+          <!-- <mat-icon (click)="onIconClick()">visibility</mat-icon> -->
+        </mat-card-title>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content class="chat-content" #chatContent>
+      <div *ngIf="areMessagesLoading" class="spinner-container">
+        <mat-spinner color="primary"></mat-spinner>
+      </div>
+      <div class="message-container" *ngIf="!areMessagesLoading">
+        <div class="message-wrapper" *ngFor="let message of messages">
+          <ng-container *ngIf="message.sender.email !== userEmail">
+            <!-- Circle with tooltip -->
+            <div *ngIf="selectedChat.isGroupChat"
+              class="message-circle"
+              matTooltip="{{ message.sender.name }}"
+              matTooltipPosition="above"
+            ></div>
+          </ng-container>
+          <div
+            class="message"
+            [ngClass]="{
+              incoming: message.sender.email !== userEmail,
+              outgoing: message.sender.email === userEmail
+            }"
+          >
+            {{ message.content }}
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <!-- Typing Indicator -->
+    <ng-container *ngIf="showTypingIndicator">
+      <ng-lottie
+        [options]="{ path: typingAnimationPath, loop: true, autoplay: true }"
+        style="width: 100px; height: 100px;"
+      >
+      </ng-lottie>
+    </ng-container>
+
+    <!-- Chat input at the bottom -->
+    <mat-card-actions class="chat-input-container">
+      <mat-form-field appearance="outline" class="message-input">
+        <input
+          matInput
+          placeholder="Enter a message..."
+          [(ngModel)]="newMessage"
+          (keydown)="onTyping($event)"
+          (keydown.enter)="sendMessage()"
+        />
+      </mat-form-field>
+      <button mat-icon-button color="primary" (click)="sendMessage()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div *ngIf="!selectedChat" class="placeholder" style="display: flex; justify-content: center;">
+  <p>Select a chat to view messages</p>
+</div>

@@ -1,0 +1,19 @@
+.dialog-header {
+  display: flex;
+  justify-content: space-between; /* Aligns title and button on opposite sides */
+  align-items: center;
+  padding-right: 8px; /* Prevents overlap */
+  position: relative;
+}
+
+h1[mat-dialog-title] {
+  margin: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  flex: 1;
+}
+
+.close-button {
+  right: 0;
+  z-index: 10;
+}

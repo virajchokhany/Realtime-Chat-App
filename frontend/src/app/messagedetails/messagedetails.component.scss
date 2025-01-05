@@ -1,0 +1,88 @@
+.chat-card {
+  height: 90vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0; /* Light grey background for the card */
+}
+.chat-input-container {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #f0f0f0; /* Light grey background for input area */
+  border-top: 1px solid #e0e0e0;
+}
+.message-input {
+  flex-grow: 1;
+  margin-right: 8px;
+}
+.chat-content {
+  flex-grow: 1;
+  overflow-y: auto; /* Enable scrolling if messages overflow */
+  padding: 1rem; /* Add padding inside the card */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between messages */
+}
+.chat-content::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar width */
+  height: 0; /* Remove horizontal scrollbar height (if any) */
+}
+.message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Space between each message */
+}
+
+.message-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align messages to the left */
+  margin-bottom: 10px; /* Add spacing between messages */
+}
+
+.message {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.message.incoming {
+  align-self: flex-start;
+  background-color: #e0f7fa;
+  color: #000;
+  border: 1px solid #b2ebf2;
+}
+
+.message.outgoing {
+  align-self: flex-end;
+  background-color: #dcf8c6;
+  color: #000;
+  border: 1px solid #a5d6a7;
+  margin-left: auto; /* Push outgoing messages to the right */
+}
+
+/* Circle for incoming messages */
+.message-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #007bff; /* Blue color for the circle */
+  margin-right: 10px; /* Space between the circle and the message */
+  cursor: pointer;
+  flex-shrink: 0; /* Prevent the circle from resizing */
+}
+
+/* Tooltip appearance is handled by Angular Material */
+
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  transition: 3ms;
+  align-items: center;
+  height: 100%; /* Full height of the message container */
+}

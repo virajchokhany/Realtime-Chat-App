@@ -1,0 +1,50 @@
+<div class="dialog-header">
+    <h1 mat-dialog-title>
+      <span *ngIf="data.groupChat">Create Group Chat</span>
+      <span *ngIf="!data.groupChat">Create Chat</span>
+    </h1>
+    <button mat-icon-button class="close-button" (click)="closeDialog()" aria-label="Close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  
+  <div mat-dialog-content>
+    
+    <mat-form-field appearance="outline" style="width: 100%;" *ngIf="groupChat">
+        <mat-label>Group Chat Name</mat-label>
+        <input matInput placeholder="Enter chat name" [(ngModel)]="chatName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Search</mat-label>
+      <input matInput placeholder="Search User" [(ngModel)]="searchText" [matAutocomplete]="auto" (input)="onSearchChange()" (keydown)="onKeyDown($event)" />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let user of filteredUsers; let i = index" [value]="user.name" (click)="selectUser(user)" [class.highlighted]="i === highlightedIndex">
+          {{ user.name }}
+        </mat-option>
+        <mat-option *ngIf="loading" disabled>
+          <mat-spinner diameter="20"></mat-spinner> Loading...
+        </mat-option>
+        <mat-option *ngIf="!loading && filteredUsers.length === 0" disabled>
+          No users found
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  
+    <div class="selected-users">
+      <mat-chip-list>
+        <mat-chip *ngFor="let user of selectedUsers" color="primary" selected removable (removed)="removeUser(user)">
+          {{ user.name }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+  
+  <div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" [disabled]="isSubmitDisabled()" (click)="onSubmit()">
+      Submit
+    </button>
+  </div>
+  <mat-spinner *ngIf="chatIsGettingCreated"></mat-spinner>
+  

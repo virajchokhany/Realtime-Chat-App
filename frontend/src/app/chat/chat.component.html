@@ -1,0 +1,38 @@
+
+
+
+
+<mat-card style="background-color: #ffffff; padding: 10px; margin: 10px; box-shadow: none;" class="chat-wrapper">
+  <!-- Header Section -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <span style="font-size: 20px; font-weight: bold; color: #424242;">My Chats</span>
+    
+    <button mat-raised-button color="accent" [matMenuTriggerFor]="animals">New Chat</button>
+    <mat-menu #animals="matMenu" xPosition="before">
+      <button mat-menu-item (click)="onGroupChatClick('one-on-one')">One-on-One Chat</button>
+      <button mat-menu-item (click)="onGroupChatClick('group')">Group Chat</button>
+    </mat-menu>
+  </div>
+
+  <!-- Chat List -->
+  <mat-list>
+    <mat-list-item
+      *ngFor="let chat of chats"
+      class="chat-item"
+      [ngClass]="{ active: chat._id === activeChatId }"
+      (click)="selectChat(chat)"
+    >
+      <div class="chat-info">
+        <div matLine class="chat-name" style="font-weight: bold; color: #424242;">{{getChatName(chat)}}</div>
+        <div matLine class="chat-details" style="color: #757575;">
+          <span *ngIf="chat.latestMessage" class="chat-user">{{ chat.latestMessage.sender.name }}:</span>
+          <span class="chat-message">{{ chat.latestMessage?.content }}</span>
+        </div>
+      </div>
+      <mat-divider style="border-color: #e0e0e0;"></mat-divider>
+    </mat-list-item>
+    <div style="display: flex; justify-content: center;">
+      <mat-spinner *ngIf ='chatsAreLoading'></mat-spinner>
+    </div>
+  </mat-list>
+</mat-card>

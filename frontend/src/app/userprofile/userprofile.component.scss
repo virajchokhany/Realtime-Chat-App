@@ -1,0 +1,52 @@
+.user-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4a90e2, #0059b3); /* Subtle gradient */
+  color: #fff; /* Text color */
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out; /* Add a hover effect */
+}
+
+.user-icon:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.menu-content {
+  padding: 16px;
+  text-align: center;
+  background-color: #f9f9f9; /* Light grey for elegance */
+  border-radius: 8px; /* Add rounded corners to the menu */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.user-name {
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #333; /* Neutral dark grey for text */
+}
+
+button[mat-button] {
+  width: 100%;
+  color: #0059b3; /* Match the button color with the icon theme */
+  font-weight: bold;
+  text-transform: none; /* Remove uppercase transformation for better readability */
+}
+
+::ng-deep .mat-menu-panel {
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  background-color: #f9f9f9 !important; /* Same as menu background */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+::ng-deep .mat-menu-content {
+  padding: 0; /* Remove extra padding */
+}

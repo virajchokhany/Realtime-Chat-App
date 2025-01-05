@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <span class="spacer"></span> 
+  <ng-container *ngIf="isUserLoggedIn">
+    <app-userprofile></app-userprofile>
+  </ng-container>
+</mat-toolbar>
+
+<div *ngIf="!isUserLoggedIn">
+  <app-popup-blocker></app-popup-blocker>
+</div>
+
+<router-outlet></router-outlet>
