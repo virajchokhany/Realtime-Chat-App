@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon backend/server.js"
+    "start": "nodemon backend/server.js",
+    "server":"node backend/server.js",
+    "build":"npm install && npm install --prefix frontend ng build --configuration=production --prefix frontend"
   },
   "author": "Viraj Chokhany",
   "license": "ISC",
