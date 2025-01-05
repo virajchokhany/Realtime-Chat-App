@@ -9,13 +9,13 @@ const Chat = require("./Models/chatModel");
 const cors = require('cors');
 const mongoose = require('mongoose');
 app.use(cors({
-    origin: 'http://localhost:4200',
+    origin: 'https://realtime-chat-app-1-iv4w.onrender.com',
     methods: ['GET', 'POST'],
   }));
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-      origin: 'http://localhost:4200', // Frontend origin
+      origin: 'https://realtime-chat-app-1-iv4w.onrender.com', // Frontend origin
       methods: ['GET', 'POST']
     }
   });
