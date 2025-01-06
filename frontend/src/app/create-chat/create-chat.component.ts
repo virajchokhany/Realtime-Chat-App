@@ -102,7 +102,12 @@ export class CreateChatComponent implements OnInit {
   }
 
   selectUser(user: { _id: string; name: string }): void {
-    if (!this.selectedUsers.some((u) => u._id === user._id)) {
+    if(this.data.groupChat){ 
+      if (!this.selectedUsers.some((u) => u._id === user._id)) {
+        this.selectedUsers.push(user);
+      }
+    }else{
+      this.selectedUsers = [];
       this.selectedUsers.push(user);
     }
     this.searchText = '';
